@@ -4,6 +4,7 @@ using API.Interfaces;
 using API.Services;
 using API.Helpers;
 using Microsoft.EntityFrameworkCore;
+using API.SignalR;
 
 namespace API.Extensions;
 
@@ -27,6 +28,8 @@ public static class ApplicationServiceExtensions
         services.AddScoped<LogUserActivity>();
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
+        services.AddSignalR();
+        services.AddSingleton<PresenceTracker>();
         return services;
     }
 }
